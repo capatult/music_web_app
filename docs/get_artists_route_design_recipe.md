@@ -31,12 +31,12 @@ _Include the status code and the response body._
 """
 GET /artists
   Expected response (200 OK):
-  "[Artists(1, Pixies, Rock), ..., Artists(4, Nina Simone, Jazz)]"
+  "[Artist(1, Pixies, Rock), ..., Artist(4, Nina Simone, Jazz)]"
 """
 def test_get_artists(db_connection, web_client):
     db_connection.seed("seeds/music_web_app.sql")
     response = web_client.get('/artists')
     assert response.status_code == 200
-    assert response.data.decode(UTF_8) == "[Artists(1, Pixies, Rock), ..., Artists(4, Nina Simone, Jazz)]"
+    assert response.data.decode(UTF_8) == "[Artist(1, Pixies, Rock), ..., Artist(4, Nina Simone, Jazz)]"
 
 ```

@@ -2,6 +2,8 @@ import os
 from lib.database_connection import get_flask_database_connection
 from lib.album_repository import AlbumRepository
 from lib.album import Album
+from lib.artist_repository import ArtistRepository
+from lib.artist import Artist
 from flask import Flask, request
 
 # Create a new Flask app
@@ -28,6 +30,11 @@ def post_albums():
     ))
     return ""
 
+@app.route('/artists', methods=['GET'])
+def get_artists():
+    connection = get_flask_database_connection(app)
+    repository = ArtistRepository(connection)
+    return str(repository.all())
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
