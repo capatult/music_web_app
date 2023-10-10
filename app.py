@@ -1,13 +1,32 @@
 import os
+from lib.database_connection import get_flask_database_connection
+from lib.album_repository import AlbumRepository
+from lib.album import Album
 from flask import Flask, request
 
 # Create a new Flask app
 app = Flask(__name__)
 
 # == Your Routes Here ==
-# @app.route('/albums', ['POST'])
-# def create_album():
-#     pass
+@app.route('/albums', methods=['GET'])
+def get_albums():
+    connection = get_flask_database_connection(app)
+    repository = AlbumRepository(connection)
+    return str(
+        repository.all()
+    )
+
+@app.route('/albums', methods=['POST'])
+def post_albums():
+    connection = get_flask_database_connection(app)
+    repository = AlbumRepository(connection)
+    repository.create(Album(
+        id=None,
+        title=request.form['title'],
+        release_year=request.form['release_year'],
+        artist_id=request.form['artist_id']
+    ))
+    return ""
 
 
 # These lines start the server if you run this file directly
