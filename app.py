@@ -5,6 +5,9 @@ from flask import Flask, request
 app = Flask(__name__)
 
 # == Your Routes Here ==
+# @app.route('/albums', ['POST'])
+# def create_album():
+#     pass
 
 
 # These lines start the server if you run this file directly
