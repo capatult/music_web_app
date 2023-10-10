@@ -46,10 +46,6 @@ class Artist:
 
 ## 5. Repository Class interface
 
-Your Repository class will need to implement methods for each "read" or "write" operation you'd like to run against the database.
-
-Using comments, define the method signatures (arguments and return value) and what they do - write up the SQL queries that will be used by each method.
-
 ```python
 # Table name: artists
 

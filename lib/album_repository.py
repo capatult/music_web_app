@@ -4,7 +4,8 @@ class AlbumRepository:
     def __init__(self, connection):
         self._connection = connection
 
-    def _convert_row_to_album(self, row):
+    @staticmethod
+    def _convert_row_to_album(row):
         return Album(
             row["id"], row["title"], row["release_year"], row["artist_id"]
         )
