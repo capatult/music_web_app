@@ -76,7 +76,7 @@ class ArtistRepository():
 # Repo 1
 # Get all students
 
-repo = ArtistRepository()
+repo = ArtistRepository(db_connection)
 
 artists = repo.all()
 
@@ -90,7 +90,7 @@ Artist(4, 'Nina Simone', 'Jazz'),
 # Repo 2
 # Add an artist
 
-repo = Artist()
+repo = ArtistRepository(db_connection)
 
 new_artist = Artist(None, 'Wild nothing', 'Indie')
 

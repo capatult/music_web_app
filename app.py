@@ -36,6 +36,18 @@ def get_artists():
     repository = ArtistRepository(connection)
     return str(repository.all())
 
+@app.route('/artists', methods=['POST'])
+def post_artists():
+    connection = get_flask_database_connection(app)
+    repository = ArtistRepository(connection)
+    repository.create(Artist(
+        id=None,
+        name=request.form["name"],
+        genre=request.form["genre"]
+    ))
+    return ""
+
+
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
 # if started in test mode.

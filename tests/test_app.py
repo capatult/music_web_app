@@ -78,3 +78,27 @@ Artist(3, Taylor Swift, Pop), \
 Artist(4, Nina Simone, Jazz)\
 ]\
 """
+
+"""
+When: we make a POST request to /artists
+And: we provide "Wild nothing" for `name` and "Indie" for `genre`
+Then: we should get a 200 response with no content, 
+    and the new artist should appear in the list when we make a GET request.
+"""
+def test_post_artists_adds_new_artist_to_table(db_connection, web_client):
+    db_connection.seed("seeds/music_web_app.sql")
+    response_1 = web_client.post('/artists',
+        data={"name": "Wild nothing", "genre": "Indie"})
+    assert response_1.status_code == 200
+    assert response_1.data.decode(UTF_8) == ""
+
+    response_2 = web_client.get('/artists')
+    assert response_2.status_code == 200
+    assert response_2.data.decode(UTF_8) == """[\
+Artist(1, Pixies, Rock), \
+Artist(2, ABBA, Pop), \
+Artist(3, Taylor Swift, Pop), \
+Artist(4, Nina Simone, Jazz), \
+Artist(5, Wild nothing, Indie)\
+]\
+"""

@@ -3,19 +3,11 @@
 ## 1. Route Signature
 
 ```
-# EXAMPLE
-
 # List all artists route
 GET /artists
 ```
 
 ## 2. Examples for testing
-
-_Go through each route and write down one or more example responses._
-
-_Remember to try out different parameter values._
-
-_Include the status code and the response body._
 
 ```python
 # GET /artists
